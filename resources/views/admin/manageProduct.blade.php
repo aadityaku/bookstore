@@ -4,7 +4,7 @@
     <div class="container">
         <div class="card">
             <div class="card-body">
-                <h6 class="lead float-start">Manage Products</h6>
+                <h6 class="lead float-start">Manage Products<span class="text-dark fw-bold">({{$count}})</span></h6>
 
                 <a href="{{ route('product.create') }}" class="btn btn-success float-end">Insert Product</a>
             </div>

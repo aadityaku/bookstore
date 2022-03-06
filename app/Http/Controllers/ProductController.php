@@ -15,7 +15,8 @@ class ProductController extends Controller
      */
     public function index()
     {
-        $data=["products"=>Product::all()];
+        $data=["products"=>Product::all(),
+    "count"=>Product::all()->count()];
         return view("admin.manageProduct",$data);
     }
 

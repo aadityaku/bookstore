@@ -76,6 +76,7 @@ class HomeController extends Controller
             }
             else{
                 // if order not exist
+                
                 $o = new Order();
                 $o->ordered = false;
                 $o->user_id = $user->id;
@@ -223,7 +224,7 @@ class HomeController extends Controller
             $order->save();
 
             $this->paymentDone($order);
-
+            
             return redirect()->route("public.home");
 
         }
