@@ -24,7 +24,12 @@
             <ul class="navbar-nav">
                 <li class="nav-item"><a href="{{ route('public.home') }}" class="nav-link">Home</a></li>
 
-                <li class="nav-item"><a href="{{ route('public.cart') }}" class="nav-link">Cart</a></li>
+                <li class="nav-item"><a href="{{ route('public.cart') }}" class="nav-link">Cart (<span class="text-white fw-bold">
+                    @php
+                      if($count>0)
+                        echo $count;  
+                    @endphp
+                </span>)</a></li>
                 
                 @auth
                     <li class="nav-item"><a href="" class="nav-link">Profile</a></li>

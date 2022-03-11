@@ -14,11 +14,18 @@ use Illuminate\Support\Facades\Auth;
 class HomeController extends Controller
 {
     public function index(){
-   
+         if(Auth::user()){
+            //  $count_cart=0;
+             $count_cart=Order::where([['user_id',Auth::id()],['ordered',false]])->first()->count();
+     
+         }
+         else{
+             $count_cart=0;
+         }
         $data = [
             'category' => Category::all(),
             'products' => Product::all(),
-       
+             'count'=>$count_cart,
         ];
         return view("public/home",$data);
     }
