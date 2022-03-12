@@ -15,12 +15,13 @@ class HomeController extends Controller
 {
     public function index(){
          if(Auth::user()){
-            //  $count_cart=0;
-             $count_cart=Order::where([['user_id',Auth::id()],['ordered',false]])->first()->count();
-     
+            $data['order']  = Order::where([['user_id', Auth::id()],["ordered",false]])->first();
+            $data['count'] = count($data['order']->orderitem);
+            $count_cart=$data['count'];
          }
          else{
-             $count_cart=0;
+             $data['count']=0;
+             $count_cart=$data['count'];
          }
         $data = [
             'category' => Category::all(),
@@ -49,8 +50,18 @@ class HomeController extends Controller
     }
 
     public function productView($pro_id){
+        if(Auth::user()){
+            $data['order']  = Order::where([['user_id', Auth::id()],["ordered",false]])->first();
+            $data['count'] = count($data['order']->orderitem);
+            $count_cart=$data['count'];
+         }
+         else{
+             $data['count']=0;
+             $count_cart=$data['count'];
+         }
         $data = [
-            'product' => Product::find($pro_id)
+            'product' => Product::find($pro_id),
+            'count'=>$count_cart,
         ];
         return view("public/viewProduct",$data);
     }
